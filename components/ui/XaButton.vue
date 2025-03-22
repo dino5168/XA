@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, defineProps } from 'vue';
-import { cva } from 'class-variance-authority';
-import { cn } from "../../lib/utils"
+
+import { cva, cn } from "@/utils";
 
 const isPressed = ref(false);
 
@@ -38,6 +37,7 @@ const props = defineProps<{
 </script>
 
 <template>
+
     <button @mousedown="isPressed = true" @mouseup="isPressed = false" @mouseleave="isPressed = false"
         :class="cn(buttonVariants({ buttonStyle: props.buttonStyle, size: props.size }), isPressed ? 'scale-95' : '')">
         <slot />

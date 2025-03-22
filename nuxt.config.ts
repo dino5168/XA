@@ -9,7 +9,11 @@ export default defineNuxtConfig({
       hmr: true,
     },
   },
-  css: ["~/assets/css/main.css"],
+  css: [
+    "~/assets/css/main.css",
+    "material-icons/iconfont/material-icons.css",
+    "@fortawesome/fontawesome-free/css/all.min.css",
+  ],
   modules: [
     "@nuxt/content",
     "@nuxt/eslint",
