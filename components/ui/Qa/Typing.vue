@@ -1,5 +1,5 @@
 <template>
-    <div class="lyrics-container text-blue-800 font-bold text-xl">
+    <div class="lyrics-container text-blue-800 font-bold text-2xl">
         <div v-for="(line, lineIndex) in displayLines" :key="lineIndex">
             <span v-for="(char, charIndex) in line.chars" :key="charIndex"
                 :style="{ color: line.color, visibility: char.visible ? 'visible' : 'hidden' }">{{ char.content
@@ -9,27 +9,41 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount, reactive } from "vue";
-definePageMeta({
-    layout: 'default-no'
-})
+import { ref, onMounted, onBeforeUnmount, reactive, watch } from "vue";
 
 const typingInterval = ref<number | null>(null);
 
-// 使用結構化的內容數據
-const contentData = [
-    { text: "網頁設計公司歡迎你,我要賺錢養家。", color: "red" },
-    { text: "Daley B didn't", color: "red" },
-    { text: "know what", color: "blue" },
-    { text: "he was", color: "inherit" },
-    { text: "Am I a monkey? he said.", color: "inherit" },
-    { text: "Am I a koala?", color: "inherit" },
-    { text: "Am I a porcupine?", color: "inherit" },
-];
+// 定義接口
+interface ContentItem {
+    text: string;
+    color: string;
+}
+
+interface Typeing {
+    color?: string;
+    contentData?: ContentItem[];
+    typingSpeed?: number;
+    repeat?: boolean;
+    pauseBeforeRepeat?: number;
+}
+
+// 使用 withDefaults 並為非基本類型提供工廠函數
+const props = withDefaults(
+    defineProps<Typeing>(),
+    {
+        color: 'blue',
+        contentData: () => [
+            { text: "Welcome Your Logo", color: "red" },
+        ],
+        typingSpeed: 100,
+        repeat: false,
+        pauseBeforeRepeat: 2000
+    }
+);
 
 // 為每一行文字創建字符數組，每個字符都有可見性標誌
 const displayLines = reactive(
-    contentData.map(line => ({
+    props.contentData.map(line => ({
         color: line.color,
         chars: Array.from(line.text).map(char => ({
             content: char,
@@ -37,8 +51,6 @@ const displayLines = reactive(
         }))
     }))
 );
-
-const interval = 100; // 每個字母出現的時間間隔 (毫秒)
 
 function typeEffect(delay: number) {
     let lineIndex = 0;
@@ -76,18 +88,58 @@ function typeEffect(delay: number) {
             }
         }
 
-        // 當所有字符都顯示完畢時，清除計時器
+        // 當所有字符都顯示完畢時
         if (totalCharsShown >= totalChars) {
             if (typingInterval.value) {
                 clearInterval(typingInterval.value);
                 typingInterval.value = null;
+
+                // 如果啟用了重複播放，則在暫停後重新開始
+                if (props.repeat) {
+                    setTimeout(() => {
+                        typeEffect(delay);
+                    }, props.pauseBeforeRepeat);
+                }
             }
         }
     }, delay);
 }
 
+// 監聽 contentData 變化，重新生成 displayLines
+watch(() => props.contentData, (newContentData) => {
+    // 清除現有的打字效果
+    if (typingInterval.value) {
+        clearInterval(typingInterval.value);
+        typingInterval.value = null;
+    }
+
+    // 更新 displayLines
+    const newDisplayLines = newContentData.map(line => ({
+        color: line.color,
+        chars: Array.from(line.text).map(char => ({
+            content: char,
+            visible: false
+        }))
+    }));
+
+    // 更新 reactive 對象
+    displayLines.splice(0, displayLines.length, ...newDisplayLines);
+
+    // 重新啟動打字效果
+    typeEffect(props.typingSpeed);
+}, { deep: true });
+
+// 監聽 repeat 屬性變化
+watch(() => props.repeat, (newValue, oldValue) => {
+    // 如果從非重複改為重複且目前沒有運行中的計時器（已完成一輪播放）
+    if (newValue && !oldValue && !typingInterval.value) {
+        // 重新啟動打字效果
+        typeEffect(props.typingSpeed);
+    }
+});
+
 onMounted(() => {
-    typeEffect(interval);
+    typeEffect(props.typingSpeed);
 });
 
 // 組件卸載前清除計時器，防止內存洩漏
@@ -102,6 +154,6 @@ onBeforeUnmount(() => {
 <style scoped>
 .lyrics-container {
     line-height: 1.8;
-    padding: 1rem;
+    padding: 0.25rem;
 }
 </style>
