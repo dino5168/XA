@@ -4,25 +4,25 @@
     </span>
 </template>
 <script lang="ts" setup>
-import { type badgeType, pattern, size } from './types';
-
+import { type badgeType, bgColor, txSize } from './types';
+const cssClass = "badge";
 const props = withDefaults(defineProps<badgeType>(), {
-    pattern: "primary"
+    bgColor: "primary"
 })
-const commonStyle = "font-bold rounded-sm drop-shadow-sm px-2 py-1";
+
 // 使用 cva 來管理 class
-const badgeCva = cva(commonStyle, {
+const badgeCva = cva(cssClass, {
     variants: {
-        pattern: pattern, // 這裡改成 `variant`
-        size: size
+        bgColor: bgColor, // 這裡改成 `variant`
+        txSize: txSize
     },
     defaultVariants: {
-        pattern: "primary",
-        size: "xs"
+        bgColor: "primary",
+        txSize: "xs"
     },
 });
 // 計算最終的 class
 const classAtr = computed(() =>
-    cn(badgeCva({ pattern: props.pattern, size: props.size }))
+    cn(badgeCva({ bgColor: props.bgColor, txSize: props.txSize }))
 );
 </script>

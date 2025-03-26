@@ -1,13 +1,13 @@
 <template>
-    <badge :pattern="props.pattern" :size="props.size">
+    <badge :pattern="props.bgColor" :size="props.txSize">
         <slot></slot>
         <span class="px-0.5"></span>
-        <badgeRound :pattern="props.pattern">{{ props.content }}
+        <badgeRound :pattern="props.bgColor">{{ props.content }}
         </badgeRound>
     </badge>
 </template>
 <script lang="ts" setup>
-import { type badgeType, pattern } from './types';
+import { type badgeType } from './types';
 import badge from './badge.vue';
 import badgeRound from './badgeRound.vue';
 type badgeNumberType = {
@@ -15,8 +15,8 @@ type badgeNumberType = {
 } & badgeType
 
 const props = withDefaults(defineProps<badgeNumberType>(), {
-    pattern: "primary",
-    size: "xs",
+    bgColor: "primary",
+    txSize: "xs",
     content: "10"
 })
 

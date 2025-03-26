@@ -1,5 +1,5 @@
 <template>
-    <badge :pattern="props.pattern" :size="props.size">
+    <badge :pattern="props.bgColor" :size="props.txSize">
         <i :class="props.name"></i>
 
 
@@ -18,9 +18,9 @@ type iconType = {
 } & badgeType
 
 const props = withDefaults(defineProps<iconType>(), {
-    pattern: "danger",
+    bgColor: "danger",
     name: "fa fa-home",
-    size: "xs",
+    txSize: "xs",
     spaceX: "px-1",
 })
 const isSpaceX = ref(false);
