@@ -13,4 +13,7 @@
     <div>
         <slot></slot>
     </div>
+    <XGotoTop>
+    </XGotoTop>
+
 </template>

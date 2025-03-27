@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "~/assets/css/main.css",
     "material-icons/iconfont/material-icons.css",
     "@fortawesome/fontawesome-free/css/all.min.css",
+    "leaflet/dist/leaflet.css",
   ],
   modules: [
     "@nuxt/content",
@@ -23,5 +24,6 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxt/scripts",
     "radix-vue/nuxt",
+    "@vueuse/nuxt",
   ],
 });

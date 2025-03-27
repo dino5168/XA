@@ -1,18 +1,30 @@
 <template>
-    <section :style="{ height: props.height }" :class="props.bgcolor">
+    <section :class="props.textColor">
         <slot></slot>
     </section>
 </template>
 
 <script lang="ts" setup>
-type xsection = {
-    height?: string;
-    bgcolor?: string;
-}
+import { type sectionType, sectionStyle, bgColor, textCorleMap } from './types';
+import { typeClsss } from './typeClsss';
 
-
-const props = withDefaults(defineProps<xsection>(), {
-    height: "300px",
-    bgcolor: "bg-blue-800"
+const cssClass = "section"; //main.css 定義共同定義
+const props = withDefaults(defineProps<sectionType>(), {
+    textColor: typeClsss.getTextColor("red", "500"),
+    bgColor: typeClsss.getBgColor("blue", "500"),
+    sectionStyle: "auto",
 });
+const sectionCva = cva("", {
+    variants: {
+
+    },
+    defaultVariants: {
+
+    }
+})
+
+const classStr = computed(() => {
+
+})
+
 </script>

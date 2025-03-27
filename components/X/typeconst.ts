@@ -18,3 +18,8 @@ export const txSize = {
   x12: "text-2xl",
   xl4: "text-4xl",
 } as const;
+
+export const sectionStyle = {
+  fixed: "h-[32rem]",
+  auto: "h-auto",
+} as const;
