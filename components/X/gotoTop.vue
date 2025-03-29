@@ -1,6 +1,6 @@
 <template>
     <div v-show="isVisible"
-        class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg cursor-pointer transition-opacity duration-300 hover:bg-blue-600"
+        class="fixed animate-bounce bottom-5 right-5 z-50 size-10 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg cursor-pointer transition-opacity duration-300 hover:bg-blue-600"
         @click="scrollToTop">
         <i class="fa-solid fa-arrow-up text-xl"></i>
     </div>

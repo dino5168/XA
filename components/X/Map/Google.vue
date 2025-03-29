@@ -19,7 +19,7 @@ interface GoogleMapProps {
 
 // Type-safe variant definition
 type WidthVariant = 'default' | 'w-full' | 'w-1/2' | 'w-3/4' | 'w-auto';
-type HeightVariant = 'default' | 'h-full' | 'h-[400px]' | 'h-[500px]' | 'h-auto';
+type HeightVariant = 'default' | 'h-full' | 'h-[20rem]' | 'h-[24rem]' | 'h-auto';
 
 // Default function for generating Google Maps embed URL
 function generateGoogleMapEmbedUrl(
@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<GoogleMapProps>(), {
     longitude: "121.3689175",
     zoom: "17",
     width: "w-full",
-    height: "h-[400px]"
+    height: "h-[20rem]"
 });
 
 // Compute map source URL
@@ -59,10 +59,10 @@ const mapContainerClasses = computed(() =>
                 w_auto: 'w-auto'
             },
             height: {
-                default: 'h-[400px]',
+                default: 'h-[24rem]',
                 h_full: 'h-full',
-                h_400: 'h-[400px]',
-                h_500: 'h-[500px]',
+                h_400: 'h-[28rem]',
+                h_500: 'h-[32rem]',
                 h_auto: 'h-auto'
             }
         },

@@ -3,6 +3,18 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: {enabled: true},
+  app: {
+    head: {
+      link: [
+        {rel: "preconnect", href: "https://fonts.googleapis.com"},
+        {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: ""},
+        {
+          href: "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Yusei+Magic&display=swap",
+          rel: "stylesheet",
+        },
+      ],
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
     server: {

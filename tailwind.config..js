@@ -1,10 +1,14 @@
 const {blackA, green, mauve, slate} = require("@radix-ui/colors");
+const {transitionDuration, transitionDelay} = require("./XAos");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./**/*.vue"],
+
   theme: {
     extend: {
+      transitionDuration: transitionDuration,
+      transitionDelay: transitionDelay,
       colors: {
         ...blackA,
         ...green,

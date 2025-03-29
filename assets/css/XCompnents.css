@@ -1,0 +1,40 @@
+@layer components {
+  .btn {
+    @apply bg-cyan-500 shadow-lg shadow-cyan-500/50 
+           px-1  text-white cursor-pointer 
+           transition transform active:scale-95;
+  }
+  .btn-primary {
+    background-color: var(--color-primary);
+    @apply hover:bg-blue-300;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .btn-success {
+    background-color: var(--color-success);
+  }
+
+  .btn-danger {
+    background-color: var(--color-danger);
+  }
+
+  .btn-warning {
+    background-color: var(--color-warning);
+  }
+
+  .btn-info {
+    background-color: var(--color-info);
+  }
+
+  .btn-light {
+    background-color: var(--color-light);
+    color: black;
+  }
+
+  .btn-dark {
+    background-color: var(--color-dark);
+  }
+}

@@ -1,0 +1,5 @@
+@layer utilities {
+  .link {
+    @apply text-blue-500 hover:text-blue-600 no-underline;
+  }
+}

@@ -1,0 +1,10 @@
+@theme {
+  --color-primary: oklch(50% 0.3 250); /* 深藍色 */
+  --color-secondary: oklch(60% 0.1 280); /* 灰紫色 */
+  --color-success: oklch(55% 0.25 150); /* 綠色 */
+  --color-danger: oklch(55% 0.3 25); /* 紅色 */
+  --color-warning: oklch(75% 0.2 85); /* 黃色 */
+  --color-info: oklch(65% 0.2 230); /* 天藍色 */
+  --color-light: oklch(95% 0.02 100); /* 淺灰白 */
+  --color-dark: oklch(20% 0.05 270); /* 深灰黑 */
+}

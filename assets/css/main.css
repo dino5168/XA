@@ -1,24 +1,124 @@
 @import "tailwindcss";
-:root {
-  scroll-behavior: smooth;
+@layer utilities {
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
-  color: #444444;
-  @apply font-bold;
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: "Nunito", sans-serif;
+    background: #f6f9ff;
+    color: #444444;
+    @apply font-semibold;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Nunito", sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    @apply text-slate-900 font-semibold;
+  }
+  h1 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* text-shadow-md */
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-sm;
+  }
+  h6 {
+    @apply text-xs;
+  }
+  label {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  a {
+    color: var(--color-blue-600);
+    text-decoration-line: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    color: var(--color-indigo-700);
+  }
+}
+@layer components {
+  .a_red {
+    color: var(--color-red-500);
+
+    text-decoration-line: underline;
+    @apply underline-offset-4;
+  }
+
+  .btn {
+    @apply bg-cyan-500 shadow-lg shadow-cyan-500/50 
+           px-1  text-white cursor-pointer 
+           transition transform active:scale-95;
+  }
+  .btn-primary {
+    background-color: var(--color-primary);
+    @apply hover:bg-blue-300;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .btn-success {
+    background-color: var(--color-success);
+  }
+
+  .btn-danger {
+    background-color: var(--color-danger);
+  }
+
+  .btn-warning {
+    background-color: var(--color-warning);
+  }
+
+  .btn-info {
+    background-color: var(--color-info);
+  }
+
+  .btn-light {
+    background-color: var(--color-light);
+    color: black;
+  }
+
+  .btn-dark {
+    background-color: var(--color-dark);
+  }
+  .橫向排列 {
+    @apply flex;
+  }
+  .縱向排列 {
+    @apply flex flex-col;
+  }
+}
+@theme {
+  --color-primary: oklch(50% 0.3 250); /* 深藍色 */
+  --color-secondary: oklch(60% 0.1 280); /* 灰紫色 */
+  --color-success: oklch(55% 0.25 150); /* 綠色 */
+  --color-danger: oklch(55% 0.3 25); /* 紅色 */
+  --color-warning: oklch(75% 0.2 85); /* 黃色 */
+  --color-info: oklch(65% 0.2 230); /* 天藍色 */
+  --color-light: oklch(95% 0.02 100); /* 淺灰白 */
+  --color-dark: oklch(20% 0.05 270); /* 深灰黑 */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold drop-shadow-sm;
-  font-family: "Nunito", sans-serif;
-}
 /**/
 .badge {
   @apply font-bold rounded-sm drop-shadow-sm px-2 py-1;
