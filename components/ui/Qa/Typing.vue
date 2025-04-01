@@ -33,7 +33,7 @@ const props = withDefaults(
     {
         color: 'blue',
         contentData: () => [
-            { text: "Welcome Your Logo", color: "red" },
+            { text: "Welcome Your Logo", color: "green" },
         ],
         typingSpeed: 100,
         repeat: false,

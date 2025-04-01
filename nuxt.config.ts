@@ -2,6 +2,7 @@
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
+  ssr: true,
   devtools: {enabled: true},
   app: {
     head: {
@@ -26,6 +27,7 @@ export default defineNuxtConfig({
     "material-icons/iconfont/material-icons.css",
     "@fortawesome/fontawesome-free/css/all.min.css",
     "leaflet/dist/leaflet.css",
+    "animate.css",
   ],
   modules: [
     "@nuxt/content",

@@ -59,7 +59,7 @@ const mapContainerClasses = computed(() =>
                 w_auto: 'w-auto'
             },
             height: {
-                default: 'h-[24rem]',
+                default: 'h-[500px]',
                 h_full: 'h-full',
                 h_400: 'h-[28rem]',
                 h_500: 'h-[32rem]',
@@ -87,7 +87,7 @@ const mapFrameClasses = computed(() =>
                 w_auto: 'w-auto'
             },
             height: {
-                default: 'h-[400px]',
+                default: 'h-[500px]',
                 h_full: 'h-full',
                 h_400: 'h-[400px]',
                 h_500: 'h-[500px]',

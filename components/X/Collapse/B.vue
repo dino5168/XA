@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineAsyncComponent, type Component } from 'vue'
 
 // Define Props type
 type Tab = {
     label: string
-    content: string
+    component: Component
 }
 
 type Props = {
@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // Active tab state with safe default
+//安全防呆（fail-safe）的做法，確保應用程式穩定運行
 const activeTab = ref(Math.min(props.defaultIndex, props.tabs.length - 1))
 </script>
 
@@ -35,10 +36,11 @@ const activeTab = ref(Math.min(props.defaultIndex, props.tabs.length - 1))
             </button>
         </div>
 
-        <!-- Tabs 內容 -->
-        <div class="tabs-content overflow-y-auto max-h-[calc(100%-48px)] p-4 border border-blue-300">
-            {{ props.tabs[activeTab].content }}
+        <!-- Tabs 內容：動態渲染組件 -->
+        <div class="tabs-content overflow-y-auto max-h-[calc(100%-48px)] p-0 border border-blue-300">
+            <component :is="props.tabs[activeTab].component" />
         </div>
+
     </div>
 </template>
 
